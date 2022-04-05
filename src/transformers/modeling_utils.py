@@ -2162,7 +2162,7 @@ class PreTrainedModel(nn.Module, ModuleUtilsMixin, GenerationMixin, PushToHubMix
             state_dict = torch.load(archive_file, map_location="cpu")
 
             # materialize state_dict entries one by one on CPU
-            for k in loaded_state_dict_keys:
+            for k in state_dict.keys():
                 submodule, param_name = find_submodule_and_param_name(model, k)
                 if submodule is not None:
                     param_dtype = getattr(submodule, param_name).dtype
